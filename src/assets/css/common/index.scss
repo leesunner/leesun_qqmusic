@@ -1,0 +1,29 @@
+$color:#fb762a;
+$red: #fbb8db;
+//@function px2rem($px, $base-font-size: 75px) {
+//  @if (unitless($px)) {
+//    @warn "#{$px}必须为number类型";
+//    @return px2rem($px + 0px);
+//  } @else if (unit($px) == rem) {
+//    @return $px;
+//  }
+//  @return ($px / $base-font-size) * 1rem;
+//}
+//字体大小处理宏
+@mixin font-size($font-size){
+  font-size: $font-size;
+  [data-dpr="2"] & {
+    font-size: $font-size* 2;
+  }
+  [data-dpr="3"] & {
+    font-size: $font-size* 3;
+  }
+}
+//处理文字超出部分变为...
+@mixin t-text($line){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}

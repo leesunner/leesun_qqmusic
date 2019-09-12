@@ -1,0 +1,52 @@
+.flex(@val) when(@val='s'){
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flex(@val) when(@val='e'){
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+.flex(@val) when(@val='b'){
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.pullDefault{
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  transition: all 0.35s ease;
+  opacity: 0;
+  z-index: 100;
+  transform: translate3d(0,-120px,0);
+}
+.pullShow{
+  opacity: 1;
+  transform: translate3d(0,120px,0);
+}
+//字体大小处理宏
+.font-size(@font-size){
+  font-size: @font-size;
+  [data-dpr="2"] & {
+    font-size: @font-size* 2;
+  }
+  [data-dpr="3"] & {
+    font-size: @font-size* 3;
+  }
+}
+//处理文字超出部分变为...
+.t-text(@line){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @line;
+  -webkit-box-orient: vertical;
+}
