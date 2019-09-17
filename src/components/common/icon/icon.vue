@@ -26,7 +26,6 @@
         style:{
           height:`${this.size}rem`,
           width:`${this.size}rem`,
-          "line-height":`${this.size}rem`,
         },
         fontSize:`${this.size}rem`
       }
@@ -38,6 +37,6 @@
 .font-icon{
   display: inline-block;
   text-align: center;
-  color: #2caf6f;
+  vertical-align: middle;
 }
 </style>

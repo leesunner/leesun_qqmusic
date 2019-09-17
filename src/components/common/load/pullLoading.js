@@ -15,7 +15,7 @@ const pullLoading = _component('pull-loading', {
   props: {
     imgUrl: {
       type: String,
-      default: require('../image/icon/20140524124233131.gif'),
+      default: require('../image/icon/20130527034916454.gif'),
     },
     open: {
       type: Boolean,

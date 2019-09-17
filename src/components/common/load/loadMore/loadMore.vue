@@ -1,16 +1,8 @@
 <template>
-  <div class="loadMore" :class="{'loadMore-anima':down}" ref="loadMore"
-       :style="'transform:translate3d(0,'+moveY+'px,0)'">
+  <div class="loadMore" :class="moveY?'loadMoreT':''" ref="loadMore" :style="moveY?'transform: translate3d(0,'+showYheight+'px,0)':''">
     <pull-loading :open="open"></pull-loading>
     <slot></slot>
-    <div class="loadMore-contanier">
-      <ul>
-        <li v-for="item in data">
-          <le-image :src="item.url"></le-image>
-        </li>
-      </ul>
-    </div>
-    <img v-if="!down"  class="loadMore-bottom" src="../../image/icon/20130527034917143.gif"/>
+    <img v-if="moveY" class="loadMore-bottom" src="../../image/icon/20130527034917143.gif"/>
   </div>
 </template>
 
@@ -33,77 +25,81 @@
         type: Boolean,
         default: false,
       },
-      data:{
-        type:Array,
-        default:[],
-      }
     },
     data() {
       return {
         open: false,
-        moveY: 0,
-        down:true,
-        set:null
+        moveY: false,
+        constY:55,
+        showYheight:0,
       }
     },
     mounted() {
       this.$nextTick(() => {
-        if (this.pullDown || this.pullup) {
+        if (this.pullDown || this.pullUp) {
           this.addLisens()
         }
       })
     },
     methods: {
-      loadFinished(){
+      loadFinished() {
         this.open = false
-        this.down = true
-        this.moveY = 0
+        this.moveY = false
+        this.showYheight = 0
       },
+      //颗粒度滑动距离
+      easeY(moveY){
+        const headHeight = this.constY;
+        const y = Math.round(moveY < headHeight ? 1+moveY/3 : moveY < headHeight * 2 ? headHeight + (moveY - headHeight) / 2 : headHeight * 1.5 + (moveY - headHeight * 2) / 4);
+        console.log(y)
+        return y
+      },
+      getTouchs(e,_el){
+        //手指滑动时的位置
+        const my = e.changedTouches[0].clientY,mx = e.changedTouches[0].clientX;
+        //窗口滚动的距离以及窗口的高度
+        const wsy = window.scrollY, wh = window.innerHeight
+        //滚动容器的高度
+        const rsh = _el.clientHeight
+        return {
+          my:my,
+          mx:mx,
+          wsy:wsy,
+          wh:wh,
+          rsh:rsh,
+        }
+      },
+      //施加监听
       addLisens() {
-        let that = this
-        let y = 0;
+        let y = 0,x = 0;
         const el_par = this.$refs.loadMore
         el_par.addEventListener('touchstart', e => {
-          y = e.changedTouches[0].clientY
+          y = e.changedTouches[0].clientY;
+          x = e.changedTouches[0].clientX;
         })
         el_par.addEventListener('touchmove', e => {
-          //手指滑动时的位置
-          let my = e.changedTouches[0].clientY
-          //窗口滚动的距离以及窗口的高度
-          let wsy = window.scrollY, wh = window.innerHeight
-          //滚动容器的高度
-          let rsh = el_par.clientHeight
+          const Hobj = this.getTouchs(e,el_par)
+          let numY = Hobj.my - y
+          //触顶下拉触发条件
+          if (numY > this.constY && Hobj.wsy <= 0 && Math.abs(Hobj.mx-x) < this.constY ) {
+            this.open = true
+          }
+          //触底上拉加载更多触发条件
+          if (Hobj.rsh - Hobj.wh <= Hobj.wsy && numY<(-this.constY/2 )&& Math.abs(Hobj.mx-x) < this.constY ) {
+            e.preventDefault()
+            this.moveY = true
+          }
+          numY<0?this.showYheight = (- this.easeY(Math.abs(numY))):''
+        })
+        el_par.addEventListener('touchend', e => {
+          const Hobj = this.getTouchs(e,el_par)
           //下拉触发回调函数（比如下拉刷新等）
-          if (my - y > 20 && window.scrollY <= 0) {
-            that.open = true
+          if (this.open) {
+            this.$emit('handlerPullDown')
           }
           //上拉加载更多回调函数
-          if (rsh - wh <= wsy && that.down) {
-            let numY = my - y, ty = 0
-            //保证手指一动足够的距离
-            if(numY>=-35) return
-            //反之重复触发
-            that.down = false
-            function setT() {
-              ty-=1
-              that.moveY = ty
-            }
-            //颗粒化手指上拉dom移动效果
-            this.set = setInterval(() => {
-              if (ty > numY) {
-                setT()
-              } else {
-                clearInterval(this.set)
-              }
-            }, 0.05)
-          }
-        })
-        el_par.addEventListener('touchend',e=>{
-          if(this.open){
-            that.$emit('handlerPullDown')
-          }
-          if(!this.down){
-            that.$emit('handlerUpDown')
+          if (this.moveY ) {
+            this.$emit('handlerUpDown', Hobj.wsy)
           }
         })
       },
@@ -112,26 +108,33 @@
 </script>
 
 <style lang="less" scoped>
+  .loadMoreT{
+    transition:none!important;
+  }
   .loadMore {
     position: relative;
-    &-anima{
-      transition: all 0.35s ease-in-out;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    &-bottom {
+      display: block;
+      margin: 10px auto;
+      height: 30px;
     }
-    &-bottom{
+    .pullDefault {
       display: block;
       position: absolute;
-      z-index: 5;
-      bottom: -30px;
-      left: 0;
+      top: 0;
       right: 0;
+      left: 0;
       margin: 0 auto;
+      transition: all 0.35s ease;
+      opacity: 0;
+      z-index: 999;
+      transform: translate3d(0, -60px, 0);
     }
-    li {
-      border: dashed 1px #07c160;
-      img {
-        display: block;
-        width: 100%;
-      }
+    .pullShow {
+      opacity: 1;
+      transform: translate3d(0, 40px, 0);
     }
   }
 </style>

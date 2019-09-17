@@ -1,4 +1,3 @@
-"use strict"
 import Vue from 'vue';
 /**
  * @param name:组件名, obj:vue组件数据源

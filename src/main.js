@@ -3,7 +3,9 @@ import App from './App'
 import router from './router'
 import 'es6-promise/auto'
 import store from './store/index'
-import 'vant/lib/index.css'
+import  FastClick  from  'fastclick'
+import Vant from 'vant';
+import 'vant/lib/index.css';
 import './vantConfig/index'
 import './diyComponents/index'
 import chart from '@antv/f2'
@@ -14,6 +16,8 @@ import apiConfig from './request/apiConfig'
 
 Vue.config.productionTip = false
 
+Vue.use(Vant);
+FastClick.attach(document.body);
 Vue.prototype.$axios = axios
 Vue.prototype.$api = apiConfig
 Vue.prototype.$F2 = chart

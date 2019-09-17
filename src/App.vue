@@ -11,7 +11,5 @@ export default {
 </script>
 
 <style>
-#app {
-  -webkit-overflow-scrolling: touch;
-}
+
 </style>

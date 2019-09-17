@@ -42,7 +42,7 @@ span,p,div{
 div{
   overflow-x:hidden;
   /*开启moblie网页快速滚动和回弹的效果*/
-  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 .lf{ float:left; }
 .rt{ float:right; }

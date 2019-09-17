@@ -1,39 +1,51 @@
-.flex(@val) when(@val='s'){
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
+* {
+  font-family: '思源黑体-加粗', Verdana, Arial, 'Avenir', Helvetica, sans-serif, "Times New Roman";
+  text-decoration: none;
+  font-weight: normal;
+  outline: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.flex(@val) when(@val='e'){
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
-  align-items: center;
-}
-.flex(@val) when(@val='b'){
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-}
-.pullDefault{
-  display: block;
-  position: absolute;
+.posit(@val) when(@val='t'){
+  width: 100%;
+  position: fixed;
   top: 0;
-  right: 0;
   left: 0;
-  margin: 0 auto;
-  transition: all 0.35s ease;
-  opacity: 0;
-  z-index: 100;
-  transform: translate3d(0,-120px,0);
 }
-.pullShow{
-  opacity: 1;
-  transform: translate3d(0,120px,0);
+.posit(@val) when(@val='b'){
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
+.flexComon(){ display: flex; flex-flow: row nowrap; align-items: center; }
+
+.flex(@val) when (@val='s') {
+  justify-content: flex-start;
+  .flexComon();
+}
+.flex(@val) when (@val='e') {
+  .flexComon();
+  justify-content: flex-end;
+
+}
+
+.flex(@val) when (@val='b') {
+  .flexComon();
+  justify-content: space-between;
+}
+
+.flex(@val) when (@val='center') {
+  .flexComon();
+  justify-content: center;
+}
+
 //字体大小处理宏
-.font-size(@font-size){
+.font-size(@font-size) {
   font-size: @font-size;
   [data-dpr="2"] & {
     font-size: @font-size* 2;
@@ -42,8 +54,9 @@
     font-size: @font-size* 3;
   }
 }
+
 //处理文字超出部分变为...
-.t-text(@line){
+.t-text(@line) {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
