@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="mine-user-menu">
-          <div v-for="item in iconData" class="mine-user-menu-item">
+          <div v-for="item in iconData" @click="$router.push({name:item.url})" class="mine-user-menu-item">
             <icon :icon="item.icon" :size="0.7" :fontColor="'#32c37d'"></icon>
             <p class="title">{{item.name}}</p>
             <p class="number">{{item.num}}</p>
@@ -86,17 +86,18 @@
           {
             icon:'icon-yinle',
             name:'本地音乐',
-            num:58
+            num:this.$store.state.songList.length,
+            url:'localMusic'
           },
           {
             icon:'icon-xinbaniconshangchuan-',
             name:'下载音乐',
-            num:18
+            num:3
           },
           {
             icon:'icon-shizhong',
             name:'最近播放',
-            num:101
+            num:this.$store.state.songPlayNum
           },
           {
             icon:'icon-xihuan',

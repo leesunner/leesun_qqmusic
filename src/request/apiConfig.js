@@ -1,5 +1,4 @@
 const apiConfig = {
-  home:'/api/index/site',
-  datas:'/api/index/site',
+  home:'',
 }
 export  default  apiConfig

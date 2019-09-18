@@ -1,5 +1,6 @@
 <template>
   <div class="font-icon" :style="style">
+    <slot></slot>
     <i :class="['iconfont',icon]" :style="`font-size: ${fontSize}!important;color:${fontColor};`"></i>
   </div>
 </template>
@@ -38,5 +39,6 @@
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  position: relative;
 }
 </style>

@@ -5,6 +5,8 @@ const Home = ()=>lazyComponent(import('@/pages/Home'))
 const Mine = ()=>lazyComponent(import('@/pages/mine/Mine'))
 const MusicHouse = ()=>lazyComponent(import('@/pages/musicHouse/index'))
 const Find = ()=>lazyComponent(import('@/pages/find/index'))
+const LocalMusic= ()=>lazyComponent(import('@/pages/localList'))
+
 Vue.use(Router)
 
 export default new Router({
@@ -32,5 +34,10 @@ export default new Router({
         }
       ]
     },
+    {
+      path: '/localMusic',
+      name: 'localMusic',
+      component: LocalMusic
+    }
   ]
 })

@@ -22,7 +22,7 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (res) {
   // 对响应数据做点什么
   //比如使用状态码给出响应提示
-  if (res.data.code == 200) {
+  if (res.status == 200) {
     return res.data
   } else {
     return res.data.msg
