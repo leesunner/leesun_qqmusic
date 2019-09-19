@@ -11,7 +11,7 @@
     </van-col>
     <van-col span="12" class="play-right">
       <div class="play-right-audio">
-        <audio preload ref="audioPlay">
+        <audio preload ref="audioPlay" v-if="updateControl">
           <source :src="`../../../../static/mp3/${songObj.url}`" />
         </audio>
       </div>
@@ -41,6 +41,11 @@
       return {
         playRate: 0,
       }
+    },
+    mounted(){
+      this.$nextTick(()=>{
+        this.initPalyEl()
+      })
     },
   }
 </script>

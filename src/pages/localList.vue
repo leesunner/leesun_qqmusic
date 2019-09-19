@@ -13,7 +13,7 @@
     </div>
     <div class="local-content">
       <van-index-bar>
-        <div v-for="item in songs" class="local-content-item" @click="goPlay(item)">
+        <div v-for="item in songs" class="local-content-item" @click="playChoose(item)">
           <van-cell :title="item.songName">
             <div>
               <van-icon class-prefix="iconfont icon-xuanzhong" color="#32c37d"/>
@@ -37,7 +37,7 @@
       }
     },
     methods: {
-      goPlay(item) {
+      playChoose(item) {
         this.$store.commit('setSonsInfo', item)
       },
     }
