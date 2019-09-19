@@ -15,6 +15,9 @@ export default new Router({
       path: '/',
       name:'home',
       component: Home,
+      meta:{
+        child:false,
+      },
       children:[
         {
           path: '/localMusic',

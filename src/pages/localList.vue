@@ -2,7 +2,7 @@
   <div class="local">
     <div class="local-head">
       <van-nav-bar title="本地音乐">
-        <van-icon class-prefix="iconfont icon-flow" slot="left"/>
+        <van-icon class-prefix="iconfont icon-flow" slot="left" @click="$router.go(-1)"/>
         <van-icon class-prefix="iconfont icon-diandiandianshu" slot="right"/>
       </van-nav-bar>
       <van-tabs title-inactive-color="#cdcdcd" title-active-color="#32c37d" color="#32c37d" line-width="56"

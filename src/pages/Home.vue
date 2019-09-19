@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="!$route.meta.child">
+    <div v-show="!$route.meta.child">
       <head-component @change="handlerClickPage" :activeIndex="index"></head-component>
       <div class="home-content">
         <van-swipe ref="vantSwipe" :loop="false" :duration="150" :height="wh" @change="handlerChangPage" :show-indicators="false">
@@ -12,7 +12,11 @@
         </van-swipe>
       </div>
     </div>
-    <router-view></router-view>
+    <keep-alive>
+      <transition name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
+    </keep-alive>
     <bottom-play></bottom-play>
   </div>
 </template>
