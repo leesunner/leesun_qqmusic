@@ -1,7 +1,9 @@
 <template>
-  <div class="loadMore" :class="moveY?'loadMoreT':''" ref="loadMore" :style="moveY?'transform: translate3d(0,'+showYheight+'px,0)':''">
-    <pull-loading :open="open"></pull-loading>
-    <slot></slot>
+  <div class="loadMoreBox" ref="loadMoreBox">
+    <div class="loadMore" :class="moveY?'loadMoreT':''" ref="loadMore" :style="moveY?'transform: translate3d(0,'+showYheight+'px,0)':''">
+      <pull-loading :open="open"></pull-loading>
+      <slot></slot>
+    </div>
     <img v-if="moveY" class="loadMore-bottom" src="../../image/icon/20130527034917143.gif"/>
   </div>
 </template>
@@ -51,14 +53,14 @@
       easeY(moveY){
         const headHeight = this.constY;
         const y = Math.round(moveY < headHeight ? 1+moveY/3 : moveY < headHeight * 2 ? headHeight + (moveY - headHeight) / 2 : headHeight * 1.5 + (moveY - headHeight * 2) / 4);
-        console.log(y)
         return y
       },
       getTouchs(e,_el){
         //手指滑动时的位置
         const my = e.changedTouches[0].clientY,mx = e.changedTouches[0].clientX;
         //窗口滚动的距离以及窗口的高度
-        const wsy = window.scrollY, wh = window.innerHeight
+        const box = this.$refs.loadMoreBox
+        const wsy = box.scrollTop, wh = box.scrollHeight
         //滚动容器的高度
         const rsh = _el.clientHeight
         return {
@@ -108,6 +110,12 @@
 </script>
 
 <style lang="less" scoped>
+  .loadMoreBox{
+    position: relative;
+    height: inherit;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
   .loadMoreT{
     transition:none!important;
   }
@@ -117,6 +125,10 @@
     transition: all 0.35s ease-in-out;
     &-bottom {
       display: block;
+      position: absolute;
+      bottom: 100px;
+      left: 0;
+      right: 0;
       margin: 10px auto;
       height: 30px;
     }

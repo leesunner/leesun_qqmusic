@@ -1,17 +1,15 @@
 <template>
-  <div class="home">
-      <img-load-more ref="load" :data="imgs" :pullDown="true" :pullUp="true" @handlerPullDown="handlerPullDown"
-                     @handlerUpDown="handlerUpDown">
-      </img-load-more>
-  </div>
+    <lee-load-more ref="load" :data="imgs" :pullDown="true" :pullUp="true" @handlerPullDown="handlerPullDown"
+                   @handlerUpDown="handlerUpDown">
+    </lee-load-more>
 </template>
 
 <script>
-  import ImgLoadMore from "../../components/common/load/loadMore/loadMore";
+  import LeeLoadMore from "../../components/common/load/loadMore/loadMore";
   import HeadCompnent from "../../components/common/header/appHeader"
   export default {
     components: {
-      ImgLoadMore,
+      LeeLoadMore,
       HeadCompnent
     },
     name: "find",
@@ -72,8 +70,5 @@
 </script>
 
 <style lang="less" scoped>
-  .home {
-    width: 100%;
-    position: relative;
-  }
+
 </style>

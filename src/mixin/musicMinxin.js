@@ -13,21 +13,20 @@ const MusicMixin = {
   watch: {
     '$store.state.songInfo': {
       deep: true,
-      handler(newVal) {
+      handler(newVal, oldVal) {
         this.songObj = newVal
-        this.$nextTick(()=>{
-          this.audio = this.$refs.audioPlay
+        this.$nextTick(() => {
+          if (oldVal) {
+            this.removeLisens
+            this.initData()
+            this.initPalyEl()
+            this.audio.play()
+          } else {
+            this.initPalyEl()
+          }
         })
       },
       immediate: true
-    },
-    audio(newVal){
-      if(newVal!=null){
-        this.audio!=null?this.removeLisens():''
-        this.initData()
-        this.addLisenters()
-        this.audio.play()
-      }
     },
   },
   computed: {
@@ -43,13 +42,17 @@ const MusicMixin = {
       this.currentTime = 0//歌曲播放当前时间
       clearInterval(this.setInt)
       this.setInt = null//歌曲头像旋转控制器
-      this.songObj = {}
+    },
+    //初始化播放媒体
+    initPalyEl(){
+      this.audio = this.$refs.audioPlay
+      this.addLisenters()
     },
     //移除监听器
-    removeLisens(){
-      this.audio.removeEventListener('timeupdate',null)
-      this.audio.removeEventListener('loadedmetadata',null)
-      this.audio.removeEventListener('ended',null)
+    removeLisens() {
+      this.audio.removeEventListener('timeupdate', null)
+      this.audio.removeEventListener('loadedmetadata', null)
+      this.audio.removeEventListener('ended', null)
     },
     //添加音频资源监听
     addLisenters() {
@@ -59,18 +62,24 @@ const MusicMixin = {
         this.setInt = setInterval(() => {
           this.playRotate += 0.36
         }, 30)
-        e.srcElement.paused ? clearInterval(this.setInt) : ''
+        if (e.srcElement.paused) {
+          clearInterval(this.setInt)
+          this.songStatus = false
+        } else {
+          this.songStatus = true
+        }
       })
       this.audio.addEventListener('loadedmetadata', e => {
         this.audioTimeTotal = e.srcElement.duration
       })
       this.audio.addEventListener('ended', e => {
+        this.songStatus = false
         clearInterval(this.set)
       })
     },
     //播放控制器
     goPlay() {
-      console.log(this.audio)
+      console.log(this.audio.paused)
       if (this.audio.paused) {
         this.songStatus = true;
         this.audio.play()

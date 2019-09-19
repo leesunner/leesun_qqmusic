@@ -15,29 +15,16 @@ export default new Router({
       path: '/',
       name:'home',
       component: Home,
-      redirect:'/mine',
       children:[
         {
-          path: '/mine',
-          name: 'mine',
-          component: Mine
-        },
-        {
-          path: '/musicHouse',
-          name: 'musicHouse',
-          component: MusicHouse
-        },
-        {
-          path: '/find',
-          name: 'find',
-          component: Find
+          path: '/localMusic',
+          name: 'localMusic',
+          component: LocalMusic,
+          meta:{
+            child:true,
+          }
         }
       ]
     },
-    {
-      path: '/localMusic',
-      name: 'localMusic',
-      component: LocalMusic
-    }
   ]
 })

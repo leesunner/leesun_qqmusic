@@ -24,16 +24,12 @@
         </div>
       </van-index-bar>
     </div>
-    <bottom-play ref="play"></bottom-play>
   </div>
 </template>
 
 <script>
-  import BottomPlay from '../components/common/playBottom/play'
-
   export default {
     name: "localhost-music",
-    components: {BottomPlay},
     data() {
       return {
         nameList: ['歌曲', '歌手', '专辑', '文件夹'],

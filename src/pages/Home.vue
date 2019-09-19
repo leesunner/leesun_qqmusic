@@ -1,15 +1,18 @@
 <template>
   <div class="home">
-    <head-component @change="handlerClickPage" :activeIndex="index"></head-component>
-    <div class="home-content">
-      <van-swipe ref="vantSwipe" :loop="false" :duration="150" @change="handlerChangPage" :show-indicators="false">
-        <van-swipe-item v-for="(item,index) in arr" :key="index+100">
-          <keep-alive>
-            <component :is="item"></component>
-          </keep-alive>
-        </van-swipe-item>
-      </van-swipe>
+    <div v-if="!$route.meta.child">
+      <head-component @change="handlerClickPage" :activeIndex="index"></head-component>
+      <div class="home-content">
+        <van-swipe ref="vantSwipe" :loop="false" :duration="150" :height="wh" @change="handlerChangPage" :show-indicators="false">
+          <van-swipe-item v-for="(item,index) in arr" :key="index+100">
+            <keep-alive>
+              <component :is="item"></component>
+            </keep-alive>
+          </van-swipe-item>
+        </van-swipe>
+      </div>
     </div>
+    <router-view></router-view>
     <bottom-play></bottom-play>
   </div>
 </template>
@@ -32,7 +35,8 @@
     data() {
       return {
         index: 0,
-        arr: ['Mine', 'MusicHouse', 'Find']
+        arr: ['Mine', 'MusicHouse', 'Find'],
+        wh:window.innerHeight-160,
       }
     },
     methods: {

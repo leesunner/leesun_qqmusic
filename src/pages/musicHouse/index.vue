@@ -1,25 +1,23 @@
 <template>
-  <div class="home">
-      <img-load-more ref="load" :pullDown="true" :pullUp="true" @handlerPullDown="handlerPullDown"
-                     @handlerUpDown="handlerUpDown">
-        <div class="home-contanier">
-          <ul>
-            <li v-for="item in imgs">
-              <le-image :src="item.url"></le-image>
-            </li>
-          </ul>
-        </div>
-      </img-load-more>
-  </div>
+  <lee-load-more ref="load" :pullDown="true" :pullUp="true" @handlerPullDown="handlerPullDown"
+                 @handlerUpDown="handlerUpDown">
+    <div class="home-contanier">
+      <ul>
+        <li v-for="item in imgs">
+          <le-image :src="item.url"></le-image>
+        </li>
+      </ul>
+    </div>
+  </lee-load-more>
 </template>
 
 <script>
-  import ImgLoadMore from "../../components/common/load/loadMore/loadMore";
+  import LeeLoadMore from "../../components/common/load/loadMore/loadMore";
   import HeadCompnent from "../../components/common/header/appHeader"
   import leImage from '../../components/common/image/le-Image';
   export default {
     components: {
-      ImgLoadMore,
+      LeeLoadMore,
       HeadCompnent,
       leImage
     },
@@ -82,8 +80,6 @@
 
 <style lang="less" scoped>
   .home {
-    width: 100%;
-    position: relative;
     &-contanier{
       li {
         border: dashed 1px #07c160;
