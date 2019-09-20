@@ -84,6 +84,7 @@ const MusicMixin = {
     Eended(e) {
       this.songStatus = false
       clearInterval(this.set)
+      this.currentTime = 0
     },
     //移除旧元素的监听器
     removeLisens(audio) {

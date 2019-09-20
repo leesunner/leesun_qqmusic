@@ -1,6 +1,6 @@
 import loading from '../components/common/loading'
 import failed from '../components/common/failed'
-
+//异步加载组件优化函数
 export  default (c) => ({
   // 需要加载的组件 (应该是一个 `Promise` 对象)
   component: c,
