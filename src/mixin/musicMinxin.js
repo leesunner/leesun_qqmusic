@@ -85,6 +85,7 @@ const MusicMixin = {
       this.songStatus = false
       clearInterval(this.set)
       this.currentTime = 0
+      this.$store.commit('setPlayRotate',0)
     },
     //移除旧元素的监听器
     removeLisens(audio) {

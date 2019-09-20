@@ -30,6 +30,18 @@
 </script>
 
 <style lang="less">
+  * {
+    font-family: '思源黑体-加粗', Verdana, Arial, 'Avenir', Helvetica, sans-serif, "Times New Roman";
+    text-decoration: none;
+    font-weight: normal;
+    outline: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   .transition-box {
     position: fixed;
     top: 0;
