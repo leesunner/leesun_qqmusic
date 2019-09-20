@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state:{
     songInfo:{},//正在播放的资源
     songList:[],//本地音乐集合
-    songPlayNum:1,//最近音乐播放数
+    songPlayNum:0,//最近音乐播放数
+    showSongPage:false,//显示当前播放页面的控制器
+    playRotate:0,//播放音乐的旋转角度
   },
   getters:{
     getSonsInfo(state){

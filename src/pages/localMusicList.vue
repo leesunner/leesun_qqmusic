@@ -13,12 +13,12 @@
     </div>
     <div class="local-content">
       <van-index-bar>
-        <div v-for="item in songs" class="local-content-item" @click="playChoose(item)">
+        <div v-for="item in songs" :class="['local-content-item',item.url==$store.state.songInfo.url?'local-content-itemColor':'']" @click="playChoose(item)">
           <van-cell :title="item.songName">
             <div>
               <van-icon class-prefix="iconfont icon-xuanzhong" color="#32c37d"/>
               <van-icon class-prefix="iconfont icon-hq-line " color="#32c37d"/>
-              <span>{{`${item.singer} - ${item.albumName}`}}</span>
+              <span class="name">{{`${item.singer} - ${item.albumName}`}}</span>
             </div>
           </van-cell>
         </div>
@@ -80,6 +80,17 @@
             }
           }
         }
+        .name{
+          color: #a9a9ab;
+        }
+      }
+      &-itemColor{
+        /deep/.van-cell{
+          color: #32c37d;
+        }
+        .name{
+          color: #32c37d;
+        }
       }
       /deep/ .van-index-bar__sidebar {
         background-color: #ebedf0;
@@ -88,9 +99,7 @@
         padding-top: 50px;
         box-sizing: border-box;
         .van-index-bar__index {
-          font-size: 36px;
           line-height: 36px;
-          color: #a9a9ab;
         }
       }
     }

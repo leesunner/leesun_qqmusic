@@ -41,7 +41,10 @@ module.exports = {
           {
             loader: "style-loader!css-loader!less-loader",
             options: {
-              modifyVars: diyStyle
+              modifyVars: {
+                //变量覆盖
+                diyStyle,
+              }
             }
           }
         ],

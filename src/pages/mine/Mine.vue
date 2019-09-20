@@ -35,10 +35,12 @@
       </div>
     </div>
     <div class="mine-user-menu">
-      <div v-for="item in iconData" @click="$router.push({name:item.url})" class="mine-user-menu-item">
+      <div v-for="(item,index) in iconData" @click="$router.push({name:item.url})" class="mine-user-menu-item">
         <icon :icon="item.icon" :size="0.7" :fontColor="'#32c37d'"></icon>
         <p class="title">{{item.name}}</p>
-        <p class="number">{{item.num}}</p>
+        <p class="number" v-if="index!=0||index!=2">{{item.num}}</p>
+        <p class="number" v-if="index==0">{{$store.state.songList.length}}</p>
+        <p class="number" v-if="index==2">{{$store.state.songPlayNum}}</p>
       </div>
     </div>
     <div class="mine-user-tab">
@@ -86,7 +88,6 @@
           {
             icon: 'icon-yinle',
             name: '本地音乐',
-            num: this.$store.state.songList.length,
             url: 'localMusic'
           },
           {
@@ -97,7 +98,6 @@
           {
             icon: 'icon-shizhong',
             name: '最近播放',
-            num: this.$store.state.songPlayNum
           },
           {
             icon: 'icon-xihuan',

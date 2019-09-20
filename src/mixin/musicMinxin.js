@@ -66,8 +66,9 @@ const MusicMixin = {
       this.currentTime = e.srcElement.currentTime
       clearInterval(this.setInt)
       this.setInt = setInterval(() => {
-        this.playRotate += 0.36
-      }, 30)
+        this.playRotate += 0.18
+        this.$store.commit('setPlayRotate',this.playRotate)
+      }, 15)
       if (e.srcElement.paused) {
         clearInterval(this.setInt)
         this.songStatus = false
@@ -77,7 +78,8 @@ const MusicMixin = {
     },
     Eloadedmetadata(e) {
       this.audioTimeTotal = e.srcElement.duration
-      console.log(this.audioTimeTotal)
+      //每切换一次个就是一次播放记录
+      this.$store.commit('setSongPlayNum',1)
     },
     Eended(e) {
       this.songStatus = false

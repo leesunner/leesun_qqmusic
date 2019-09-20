@@ -1,6 +1,6 @@
 <template>
   <van-row class="play">
-    <van-col span="12" class="play-left">
+    <van-col span="12" class="play-left" @click="showActiveSongPage">
       <div class="play-left-img"
            :style="'background-image: url('+songObj.img+');transform:rotateZ('+playRotate+'deg);'">
       </div>
@@ -47,6 +47,11 @@
         this.initPalyEl()
       })
     },
+    methods:{
+      showActiveSongPage(){
+        this.$store.commit('setShowSongPage',true)
+      },
+    }
   }
 </script>
 
@@ -57,16 +62,14 @@
     background-color: #ffffff;
     box-shadow: 0 -2px 10px 2px rgba(242, 243, 246, 0.75);
     padding: 16px 30px 0 30px;
-    z-index: 999;
+    z-index: 2999;
     &-left {
       .flex('s');
       &-img {
         width: 80px;
         height: 80px;
         border-radius: 50%;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-position: center;
+        .bgi();
       }
       &-name {
         margin-left: 14px;
@@ -98,11 +101,14 @@
       }
       &-control {
         position: absolute;
-        top: 7.5px;
-        right: 1.5px;
+        top: 0.1rem;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
         width: 0.75rem;
         height: 0.75rem;
         text-align: center;
+        overflow: hidden;
         z-index: 10;
       }
     }

@@ -1,3 +1,2 @@
 import MusicMixin from './musicMinxin'
-
-export { MusicMixin }
+export { MusicMixin}

@@ -1,3 +1,3 @@
 module.exports = {
-  green:'#86C109'
+  '@nav-bar-background-color':'transparent',
 }

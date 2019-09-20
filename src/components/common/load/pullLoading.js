@@ -1,4 +1,4 @@
-import _component from '../tools/createComponent';
+import _component from '@/tools/createComponent';
 //下拉加载
 const pullLoading = _component('pull-loading', {
   render: function (c) {

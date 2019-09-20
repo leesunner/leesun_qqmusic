@@ -1,7 +1,8 @@
 import Icon from './icon/icon'
 // import Image from './image/le-image'
 import loadMore from './load/loadMore/loadMore'
-const arr = [Icon,loadMore]
+import TransitionScale from './scale/scale'
+const arr = [Icon,loadMore,TransitionScale]
 
 arr.forEach(item=>{
   item.install=function(Vue){
