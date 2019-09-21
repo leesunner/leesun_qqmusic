@@ -14,4 +14,7 @@ export default {
   setPlayRotate(state,val){
     state.playRotate = val
   },
+  setAudio(state,val){
+    state.audio = val
+  },
 }

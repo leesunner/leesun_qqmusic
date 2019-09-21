@@ -1,21 +1,25 @@
 <template>
   <div class="songPage">
-    <div class="songPage-head">
-      <van-nav-bar title="本地音乐">
-        <van-icon class-prefix="iconfont icon-xiala-" @click="close" slot="left"/>
-        <van-icon class-prefix="iconfont icon-diandiandianshu" slot="right"/>
-      </van-nav-bar>
-    </div>
-    <p class="songPage-singer">— {{$store.state.songInfo.singer}} —</p>
-    <div class="songPage-choose">
-      <div>M V</div>
-      <div>音效 on</div>
-    </div>
-    <div class="songPage-img">
-      <div class="songPage-img-tran"
-           :style="'background-image: url('+$store.state.songInfo.img+');transform:rotateZ('+$store.state.playRotate+'deg);'">
+    <div>
+      <div class="songPage-head">
+        <van-nav-bar title="本地音乐">
+          <van-icon class-prefix="iconfont icon-xiala-" @click="close" slot="left"/>
+          <van-icon class-prefix="iconfont icon-diandiandianshu" slot="right"/>
+        </van-nav-bar>
       </div>
+      <p class="songPage-singer">— {{$store.state.songInfo.singer}} —</p>
+      <div class="songPage-choose">
+        <div>M V</div>
+        <div>音效 on</div>
+      </div>
+      <div class="songPage-img">
+        <div class="songPage-img-tran"
+             :style="'background-image: url('+$store.state.songInfo.img+');transform:rotateZ('+$store.state.playRotate+'deg);'">
+        </div>
+      </div>
+      <p>显示- {{$store.state.songInfo.songName}} -歌词</p>
     </div>
+
   </div>
 </template>
 

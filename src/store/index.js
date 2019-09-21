@@ -6,6 +6,7 @@ import Mutations from './mutations'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state:{
+    audio:null,//媒体对象
     songInfo:{},//正在播放的资源
     songList:[],//本地音乐集合
     songPlayNum:0,//最近音乐播放数

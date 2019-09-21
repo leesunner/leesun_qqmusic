@@ -5,7 +5,7 @@
     </keep-alive>
     <!--当前播放歌曲弹出层-->
     <transition-scale :show="$store.state.showSongPage">
-      <div class="transition-box" :style="`height: ${wh}px;`" v-show="$store.state.showSongPage">
+      <div class="transition-box" v-show="$store.state.showSongPage">
         <song-page></song-page>
       </div>
     </transition-scale>
@@ -17,11 +17,6 @@
 
   export default {
     name: 'App',
-    data() {
-      return {
-        wh: window.innerHeight
-      }
-    },
     components: {SongPage},
     created() {
       this.$store.dispatch('getSonsList')
@@ -45,12 +40,16 @@
   .transition-box {
     position: fixed;
     top: 0;
-    bottom: 0;
-    left: 0;
+    bottom: 60px;
+    left: 80px;
     right: 0;
     margin: auto auto;
-    width: 100%;
+    width: 0;
+    height: 0;
     z-index: 2999;
+    scaleX: 0;
+    scaleY: 0;
+    opacity: 0;
     overflow: hidden;
   }
 

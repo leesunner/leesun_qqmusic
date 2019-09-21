@@ -1,10 +1,9 @@
 import _component from '@/tools/createComponent';
-
-const wh = window.innerHeight
-const ww = window.innerWidth
 export default _component('transition-scale', {
   functional: true,
   render: function (c, context) {
+    const wh = window.innerHeight
+    const ww = window.innerWidth
     const data = {
       props: {
         name: 'lee-scale',
@@ -13,8 +12,8 @@ export default _component('transition-scale', {
       on: {
         enter: (el, done) => {
           Velocity(el, {
-            width: ww,
-            height: wh,
+            width: '100%',
+            height: '100%',
             scaleX: 1,
             scaleY: 1,
             translateY: 0,
@@ -26,11 +25,9 @@ export default _component('transition-scale', {
         },
         leave: (el, done) => {
           Velocity(el, {
-            width: '150px',
-            height: '150px',
             borderRadius: '50%',
-            scaleX: 1,
-            scaleY: 1,
+            scaleX: 0.3,
+            scaleY: 0.5,
           }, {duration: 50})
           Velocity(el, {
             scaleX: 2,
