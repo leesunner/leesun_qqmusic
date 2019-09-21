@@ -11,7 +11,8 @@ import './diyComponents/index'
 import chart from '@antv/f2'
 import axios from './request/index'
 import apiConfig from './request/apiConfig'
-
+import filters from './filters/index'
+import funs from './commonFuns/commonFunction'
 
 Vue.config.productionTip = false
 
@@ -20,7 +21,7 @@ FastClick.attach(document.body);
 Vue.prototype.$axios = axios
 Vue.prototype.$api = apiConfig
 Vue.prototype.$F2 = chart
-
+Vue.prototype.$funs = funs
 
 new Vue({
   el: '#app',
