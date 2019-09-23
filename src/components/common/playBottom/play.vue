@@ -12,10 +12,10 @@
     <van-col span="12" class="play-right">
       <div class="play-right-audio">
         <audio preload ref="audioPlay" v-if="updateControl">
-          <source :src="`../../../../static/mp3/${songObj.url}`" />
+          <source :src="`../../../../static/mp3/${songObj.url}`"/>
         </audio>
       </div>
-      <icon :icon="songStatus?'icon-bofang':'icon-zanting'" :size="0.8" :fontColor="'#32c37d'">
+      <icon :icon="songStatus?'icon-zanting':'icon-bofang'" :size="0.8" :fontColor="'#32c37d'">
         <div class="play-right-control" @click="goPlay">
           <van-circle
             v-model="playRate"
@@ -34,25 +34,23 @@
 
 <script>
   import {MusicMixin} from '@/mixin/index'
+
   export default {
     name: "play",
-    mixins:[MusicMixin],
+    mixins: [MusicMixin],
     data() {
       return {
         playRate: 0,
         audio: null,//媒体对象
         playRotate: 0,//歌曲进度
-        audioTimeTotal: 1,//歌曲总时间
-        currentTime: 0,//歌曲播放当前时间
         setInt: null,//歌曲头像旋转控制器
-        songStatus: false,//当前歌曲播放状态
         songObj: {},
         updateControl: true,//保证音频播放对象的唯一性控制器
         _initFirst: false,//控制初始加载页面app时不让自动播放
       }
     },
-    mounted(){
-      this.$nextTick(()=>{
+    mounted() {
+      this.$nextTick(() => {
         this.initPalyEl()
       })
     },
@@ -76,48 +74,46 @@
             await this.removeLisens(oldVal)
             //开启DOM节点的播放器
             this.updateControl = true
-            this.$nextTick(()=>{
+            this.$nextTick(() => {
               //dom更新完成后获取节点对象，并施加监听
               this.initPalyEl()
-              this.audio.play()
+              //歌曲切换后直接开始播放台突兀了，做一个延迟的效果
+              setTimeout(()=>{
+                this.audio.play()
+              },250)
             })
           }
         }
       }
     },
-    computed: {
-      //歌曲进度
-      timeRate() {
-        return (this.currentTime / this.audioTimeTotal) * 100
-      },
-    },
-    methods:{
+    methods: {
       //显示隐藏播放页面
-      showActiveSongPage(){
-        this.$store.commit('setShowSongPage',true)
+      showActiveSongPage() {
+        this.$store.commit('setShowSongPage', true)
       },
       //初始化部分数据
       initData() {
         this.audio = null
         this.updateControl = false//清除Dom节点上audio，保证播放器的唯一
         this.playRotate = 0//歌曲进度
-        this.audioTimeTotal = 1//歌曲总时间
-        this.currentTime = 0//歌曲播放当前时间
+        this.$store.commit('setSongTotalTime', 1)//歌曲总时间
+        this.$store.commit('setSongCurrentTime', 0)//歌曲播放当前时间
         clearInterval(this.setInt)
         this.setInt = null//歌曲头像旋转控制器
       },
       //初始化播放媒体
       initPalyEl() {
         this.audio = this.$refs.audioPlay
-        this.$store.commit('setAudio',this.audio)
+        this.$store.commit('setAudio', this.audio)
         this.addLisenters()
       },
       Etimeupdate(e) {
-        this.currentTime = e.srcElement.currentTime
+        console.log(this.audio.buffered)
+        this.$store.commit('setSongCurrentTime',e.srcElement.currentTime)
         clearInterval(this.setInt)
         this.setInt = setInterval(() => {
           this.playRotate += 0.18
-          this.$store.commit('setPlayRotate',this.playRotate)
+          this.$store.commit('setPlayRotate', this.playRotate)
         }, 15)
         if (e.srcElement.paused) {
           clearInterval(this.setInt)
@@ -127,15 +123,34 @@
         }
       },
       Eloadedmetadata(e) {
-        this.audioTimeTotal = e.srcElement.duration
+        this.$store.commit('setSongTotalTime', e.srcElement.duration)
         //每切换一次个就是一次播放记录
-        this.$store.commit('setSongPlayNum',1)
+        this.$store.commit('setSongPlayNum', 1)
       },
       Eended(e) {
         this.songStatus = false
         clearInterval(this.set)
         this.currentTime = 0
-        this.$store.commit('setPlayRotate',0)
+        this.playRotate = 0
+        this.$store.commit('setPlayRotate', 0)
+        // 音乐结束后检查播放模式随后控制播放
+        const pm = this.$store.state.songPlayMode
+        pm==1?this.audio.loop = true:this.audio.loop = false
+        const arr = this.$store.state.songList
+        switch (pm) {
+          case 1:
+            this.goPlay()
+            break;
+          case 2:
+            const newSong = this.$funs.randomTarget(arr,this.$store.state.songInfo)
+            this.$store.commit('setSonsInfo',newSong)
+            break;
+          case 3:
+            let index = arr.indexOf(this.$store.state.songInfo)
+            index<arr.length-1?index++:index=0
+            this.$store.commit('setSonsInfo',arr[index])
+            break;
+        }
       },
       //移除旧元素的监听器
       removeLisens(audio) {
@@ -145,8 +160,11 @@
       },
       //添加音频资源监听
       addLisenters() {
-        this.audio.addEventListener('timeupdate', this.Etimeupdate)
+        // this.audio.addEventListener('loadeddata', e=>{
+        //   console.log(e)
+        // })
         this.audio.addEventListener('loadedmetadata', this.Eloadedmetadata)
+        this.audio.addEventListener('timeupdate', this.Etimeupdate)
         this.audio.addEventListener('ended', this.Eended)
       },
     }

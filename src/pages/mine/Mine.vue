@@ -1,7 +1,7 @@
 <template>
 
-  <lee-load-more ref="load" :data="musicData" :pullDown="true" :pullUp="true" @handlerPullDown="handlerPullDown"
-                 @handlerUpDown="handlerUpDown">
+  <lee-load-more ref="load" :data="musicData" :pullDown="true" :pullUp="true" @pullDown="handlerPullDown"
+                 @pullUp="handlerUpDown">
     <div class="mine-user">
       <van-row type="flex" justify="center">
         <div class="mine-userImg" :class="login?'mine-userImg-img':''">
@@ -18,7 +18,7 @@
         <van-row type="flex" justify="center" align="center">
           <div class="mine-user-item">
             <div class="mine-user-item-icon">
-              <icon :icon="'icon-huodongfabu'" :size="0.4" :fontColor="'#BCBCBC'"></icon>
+              <icon :icon="'icon-huodongfabu'" :size="0.4" :fontColor="'#a0a0a0'"></icon>
               <span>活动中心</span>
             </div>
             <p>点击查看听歌音乐时长</p>
@@ -26,7 +26,7 @@
           <div class="mine-user-line"></div>
           <div class="mine-user-item">
             <div class="mine-user-item-icon">
-              <icon :icon="'icon-vip'" :size="0.4" :fontColor="'#BCBCBC'"></icon>
+              <icon :icon="'icon-vip'" :size="0.4" :fontColor="'#a0a0a0'"></icon>
               <span>会员中心</span>
             </div>
             <p>大片电影票放送中</p>
@@ -156,14 +156,15 @@
       &-item {
         text-align: center;
         &-icon {
+          .flex('center');
           span {
-            font-size: 28px;
+            font-size: 30px;
             margin-left: 4px;
           }
         }
         p {
           font-size: 24px;
-          color: #cecfd2;
+          color: #a0a0a0;
         }
       }
       &-line {

@@ -3,8 +3,8 @@
     <div class="loadMore" :class="moveY?'loadMoreT':''" ref="loadMore" :style="moveY?'transform: translate3d(0,'+showYheight+'px,0)':''">
       <pull-loading :open="open"></pull-loading>
       <slot></slot>
+      <img v-show="moveY" class="loadMore-bottom" :style="'transform: translate3d(0,'+(-showYheight/2)+'px,0)'" src="../../image/icon/20130527034917143.gif"/>
     </div>
-    <img v-if="moveY" class="loadMore-bottom" src="../../image/icon/20130527034917143.gif"/>
   </div>
 </template>
 
@@ -88,7 +88,7 @@
           }
           //触底上拉加载更多触发条件
           if (Hobj.rsh - Hobj.wh <= Hobj.wsy && numY<(-this.constY/2 )&& Math.abs(Hobj.mx-x) < this.constY ) {
-            e.preventDefault()
+            e.stopPropagation()
             this.moveY = true
           }
           numY<0?this.showYheight = (- this.easeY(Math.abs(numY))):''
@@ -97,11 +97,11 @@
           const Hobj = this.getTouchs(e,el_par)
           //下拉触发回调函数（比如下拉刷新等）
           if (this.open) {
-            this.$emit('handlerPullDown')
+            this.$emit('pullDown')
           }
           //上拉加载更多回调函数
           if (this.moveY ) {
-            this.$emit('handlerUpDown', Hobj.wsy)
+            this.$emit('pullUp', Hobj.wsy)
           }
         })
       },
@@ -121,14 +121,9 @@
   }
   .loadMore {
     position: relative;
-    overflow: hidden;
     transition: all 0.35s ease-in-out;
     &-bottom {
       display: block;
-      position: absolute;
-      bottom: 100px;
-      left: 0;
-      right: 0;
       margin: 10px auto;
       height: 30px;
     }

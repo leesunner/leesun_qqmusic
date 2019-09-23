@@ -1,5 +1,5 @@
 <template>
-  <div class="font-icon" :style="style">
+  <div class="font-icon" :style="style" @click="lisClick">
     <slot></slot>
     <i :class="['iconfont',icon]" :style="`font-size: ${fontSize}!important;color:${fontColor};`"></i>
   </div>
@@ -30,6 +30,14 @@
         },
         fontSize:`${this.size}rem`
       }
+    },
+    methods:{
+      lisClick(){
+        const ls = this.$listeners
+        if(ls.click){
+          this.$listeners.click()
+        }
+      },
     }
   }
 </script>

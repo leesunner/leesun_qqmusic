@@ -6,7 +6,7 @@ const loading = {
     backGround: 'rgb(0,0,0,0.6)',
   },
   open: function () {
-    const that = this
+    const _this = this
     const ele = document.getElementById('leesun-loading')
     if (!ele) {
       const h = window.innerHeight
@@ -25,17 +25,17 @@ const loading = {
       load.style.left = '0';
       load.style.width = '100%';
       load.style.height = '100%';
-      load.style.backgroundColor = that.config.backGround;
+      load.style.backgroundColor = _this.config.backGround;
       load.style.color = '#ffffff';
       load.style.zIndex = '2999';
     }
   },
   close: function () {
-    console.log(this)
     this.config._ele.style.display = 'none'
   },
   create: function (obj) {
     if(!obj) return
+    //自定义的传入字段
     this.config.backGround = obj.backGround
     this.config.imgUrl = obj.imgSrc
     this.open()

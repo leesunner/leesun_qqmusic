@@ -26,12 +26,14 @@ export default _component('transition-scale', {
         leave: (el, done) => {
           Velocity(el, {
             borderRadius: '50%',
-            scaleX: 0.3,
-            scaleY: 0.5,
+            width:300,
+            height:300,
+            scaleX: 0.7,
+            scaleY: 0.7,
           }, {duration: 50})
           Velocity(el, {
-            scaleX: 2,
-            scaleY: 2,
+            scaleX: 1,
+            scaleY: 1,
           }, {duration: 210})
           Velocity(el, {
             scaleX: 0,

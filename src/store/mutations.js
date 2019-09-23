@@ -17,4 +17,13 @@ export default {
   setAudio(state,val){
     state.audio = val
   },
+  setSongPlayMode(state,val){
+    state.songPlayMode = val
+  },
+  setSongTotalTime(state,val){
+    state.songTotalTime = val
+  },
+  setSongCurrentTime(state,val){
+    state.songCurrentTime = val
+  }
 }

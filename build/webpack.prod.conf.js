@@ -12,7 +12,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = require('../config/prod.env')
-//由于http为无状态协议，防止重新编译后出现页面缓存不更新的想象
+//由于http为无状态响应协议，防止重新编译后出现页面缓存不更新的
 const  Version = new Date().getTime()
 
 const webpackConfig = merge(baseWebpackConfig, {

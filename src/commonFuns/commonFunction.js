@@ -83,6 +83,7 @@ export default {
   },
   /**
    * 检出字典对应值
+   * @params val:对应值 arr:对应字典的数组
    */
   formatSelectValue(val, arr) {
     let value = ""
@@ -159,4 +160,16 @@ export default {
     }
     return newObj
   },
+  /**
+   * 获取数组中随机元素
+   * @params arr:目标数组 item:目标数组中的某个元素
+   * */
+  randomTarget(arr,item){
+    const index = arr.indexOf(item)
+    let itemNum = parseInt(Math.random()*(arr.length-1))
+    while(index==itemNum){
+      itemNum = parseInt(Math.random()*(arr.length-1))
+    }
+    return arr[itemNum]
+  }
 }

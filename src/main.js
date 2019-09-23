@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App'
+import  FastClick  from  'fastclick'
 import router from './router'
 import 'es6-promise/auto'
 import store from './store/index'
-import  FastClick  from  'fastclick'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import './vantConfig/index'

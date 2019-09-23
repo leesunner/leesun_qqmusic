@@ -1,4 +1,5 @@
 import axios from 'axios'
+//导入自定义的遮罩组件
 import loading from '../components/common/load/loading';
 const url = ''
 axios.create({
@@ -14,7 +15,7 @@ axios.interceptors.request.use(function (config) {
   return config
 }, function (error) {
   console.log(error)
-  // 对请求错误做些什么
+  // 对请求错误处理
   return Promise.reject(error)
 })
 
@@ -28,7 +29,7 @@ axios.interceptors.response.use(function (res) {
     return res.data.msg
   }
 }, function (error) {
-  // 对响应错误做点什么
+  // 对响应错误处理
   return Promise.reject(error)
 })
 

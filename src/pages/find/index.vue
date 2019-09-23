@@ -1,18 +1,27 @@
 <template>
-    <lee-load-more ref="load" :data="imgs" :pullDown="true" :pullUp="true" @handlerPullDown="handlerPullDown"
-                   @handlerUpDown="handlerUpDown">
-    </lee-load-more>
+  <lee-load-more ref="load" :pullDown="true" :pullUp="true" @pullDown="handlerPullDown"
+                 @pullUp="handlerUpDown">
+    <div class="home-contanier">
+      <ul>
+        <li v-for="item in imgs">
+          <le-image :src="item.url"></le-image>
+        </li>
+      </ul>
+    </div>
+  </lee-load-more>
 </template>
 
 <script>
   import LeeLoadMore from "../../components/common/load/loadMore/loadMore";
   import HeadCompnent from "../../components/common/header/appHeader"
+  import leImage from '../../components/common/image/le-Image';
   export default {
     components: {
       LeeLoadMore,
-      HeadCompnent
+      HeadCompnent,
+      leImage
     },
-    name: "find",
+    name: "musicHouse",
     data() {
       return {
         imgs: [
@@ -70,5 +79,16 @@
 </script>
 
 <style lang="less" scoped>
+  .home {
+    &-contanier{
+      li {
+        border: dashed 1px #07c160;
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
 
+  }
 </style>
