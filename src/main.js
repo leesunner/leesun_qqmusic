@@ -13,6 +13,7 @@ import axios from './request/index'
 import apiConfig from './request/apiConfig'
 import filters from './filters/index'
 import funs from './commonFuns/commonFunction'
+import routerFilter from './router/routerFilter'
 
 Vue.config.productionTip = false
 
