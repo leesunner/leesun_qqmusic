@@ -1,7 +1,7 @@
 const MusicMixin = {
   data(){
     return{
-      songStatus: true,//当前歌曲播放状态
+      songStatus: false,//当前歌曲播放状态
     }
   },
   computed: {

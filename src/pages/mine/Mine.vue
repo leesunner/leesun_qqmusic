@@ -60,12 +60,9 @@
 
 <script>
   import LeeLoadMore from "../../components/common/load/loadMore/loadMore";
-  import HeadCompnent from "../../components/common/header/appHeader";
-
   export default {
     components: {
       LeeLoadMore,
-      HeadCompnent,
     },
     name: "mine",
     data() {

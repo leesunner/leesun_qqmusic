@@ -91,10 +91,12 @@
       }
     },
     methods: {
+      //拖动进度条时暂停播放
       inputVal(e){
         const audio = this.$store.state.audio
         audio.pause()
       },
+      //拖动结束后定位到播放时间，继续播放
       changVal(e){
         const audio = this.$store.state.audio
         audio.currentTime = (e/100)*this.$store.state.songTotalTime
@@ -105,7 +107,6 @@
         let mode = this.$store.state.songPlayMode
         this.$store.commit('setSongPlayMode',mode<3?mode+1:1)
         this.playMode = this.$store.state.songPlayMode
-        console.log(this.$toast())
         this.$toast({
           message:`已切换${this.playMode==1?'单曲循环':this.playMode==2?'随机播放':'顺序播放'}`,
           duration:1500

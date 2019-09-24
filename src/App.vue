@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import SongPage from './components/songPage/index'
+  const SongPage = ()=> import('./components/songPage/index');
 
   export default {
     name: 'App',

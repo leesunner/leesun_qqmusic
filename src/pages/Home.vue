@@ -22,11 +22,11 @@
 </template>
 
 <script>
-  import HeadComponent from "../components/common/header/appHeader"
-  import Mine from './mine/Mine'
-  import MusicHouse from './musicHouse/index'
-  import Find from './find/index'
-  import BottomPlay from '../components/common/playBottom/play'
+  const HeadComponent = ()=>import("../components/common/header/appHeader")
+  const Mine = ()=>import('./mine/Mine')
+  const MusicHouse = ()=>import('./musicHouse/index')
+  const Find = ()=>import( './find/index')
+  const BottomPlay = ()=>import('../components/common/playBottom/play')
   export default {
     components: {
       HeadComponent,
