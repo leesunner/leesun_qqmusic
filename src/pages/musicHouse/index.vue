@@ -53,7 +53,7 @@
               <div class="img" :style="'background-image: url('+item.img+')'">
                 <div class="img-left">
                   <icon :size="0.36" :fontColor="'#ffffff'" :icon="'icon-erji'"></icon>
-                  <span>{{item.num}}万</span>
+                  <p>{{item.num}}万</p>
                 </div>
                 <icon :size="0.65" :fontColor="'#e2e2e2'" class="img-right" :icon="'icon-bofang1'"></icon>
               </div>
@@ -119,32 +119,32 @@
         videos: [
           {
             title: '今日推荐歌曲',
-            img: require('../../assets/img/songs/T002R06.jpg'),
+            img: require('../../assets/img/songs/T002R09.jpg'),
             num:10,
           },
           {
-            title: '回忆身边，弄丢了多少时光',
-            img: require('../../assets/img/songs/T002R05.jpg'),
+            title: '回忆身边，负了多少美人恩',
+            img: require('../../assets/img/songs/T002R08.jpg'),
             num:25,
           },
           {
             title: '陌生人，你好：欢迎进入黑色孤独',
-            img: require('../../assets/img/songs/T002R04.jpg'),
+            img: require('../../assets/img/songs/T002R06.jpg'),
             num:15,
           },
           {
             title: '[80后记忆] 那些年少时光的话语经典',
-            img: require('../../assets/img/songs/T002R03.jpg'),
+            img: require('../../assets/img/songs/T002R10.jpg'),
             num:15,
           },
           {
             title: '回忆陪我躲在角落没露面',
-            img: require('../../assets/img/songs/T002R02.jpg'),
+            img: require('../../assets/img/songs/T002R07.jpg'),
             num:65,
           },
           {
             title: '民谣，四海为家，各安天下',
-            img: require('../../assets/img/songs/T002R01.jpg'),
+            img: require('../../assets/img/songs/T002R05.jpg'),
             num:60,
           }
         ],
@@ -175,8 +175,8 @@
     /deep/ .van-swipe__indicators {
       bottom: 40px;
       .van-swipe__indicator {
-        width: 0.12rem;
-        height: 0.12rem;
+        width: 0.18rem;
+        height: 0.18rem;
       }
     }
     &-content {
@@ -217,15 +217,15 @@
           width: 55%;
           height: inherit;
           &-item {
-            background-color: rgba(239, 235, 240, 0.76);
+            background-color: rgb(245, 245, 245);
             padding-left: 24px;
             .flex('b');
             &-text {
               p {
-                font-size: 28px;
+                font-size: 30px;
               }
               p:nth-last-child(1) {
-                margin-top: 22px;
+                margin-top: 14px;
                 font-size: 22px;
                 color: #898a8d;
               }
@@ -273,10 +273,12 @@
             .flex('b');
             align-items: flex-end;
             &-left{
-              .flex('b');
+              .flex('center');
               height: 40px;
-              span{
+              p{
                 color: #ffffff;
+                margin-left: 6px;
+                margin-top: 16px;
               }
             }
           }

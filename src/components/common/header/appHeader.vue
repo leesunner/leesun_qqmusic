@@ -54,7 +54,7 @@
     background-color: #32c37d;
     color: #ffffff;
     padding: 16px 18px;
-    z-index: 1999;
+    z-index: 1666;
     &-content{
       height: 75px;
       display: flex;

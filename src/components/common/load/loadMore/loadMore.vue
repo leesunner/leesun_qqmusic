@@ -32,7 +32,7 @@
       return {
         open: false,
         moveY: false,
-        constY:55,
+        constY:46,
         showYheight:0,
       }
     },
@@ -52,7 +52,7 @@
       //颗粒度滑动距离
       easeY(moveY){
         const headHeight = this.constY;
-        const y = Math.round(moveY < headHeight ? 1+moveY/3 : moveY < headHeight * 2 ? headHeight + (moveY - headHeight) / 2 : headHeight * 1.5 + (moveY - headHeight * 2) / 4);
+        const y = Math.round(moveY < headHeight/2 ? 1+moveY/3 : moveY < headHeight * 2 ? headHeight/1.5 + (moveY - headHeight) / 2 : headHeight * 1.5 + (moveY - headHeight * 2) / 4);
         return y
       },
       getTouchs(e,_el){

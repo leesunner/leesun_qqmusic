@@ -95,11 +95,12 @@
       /deep/ .van-index-bar__sidebar {
         background-color: #ebedf0;
         height: 100%;
-        top: 63%;
+        top: 61.5%;
         padding-top: 50px;
         box-sizing: border-box;
         .van-index-bar__index {
           line-height: 36px;
+          font-size: 24px;
         }
       }
     }

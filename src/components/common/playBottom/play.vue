@@ -34,7 +34,6 @@
 
 <script>
   import {MusicMixin} from '@/mixin/index'
-
   export default {
     name: "play",
     mixins: [MusicMixin],
@@ -108,7 +107,6 @@
         this.addLisenters()
       },
       Etimeupdate(e) {
-        console.log(this.audio.buffered)
         this.$store.commit('setSongCurrentTime',e.srcElement.currentTime)
         clearInterval(this.setInt)
         this.setInt = setInterval(() => {
@@ -178,7 +176,7 @@
     background-color: #ffffff;
     box-shadow: 0 -2px 10px 2px rgba(242, 243, 246, 0.75);
     padding: 16px 30px 0 30px;
-    z-index: 2999;
+    z-index: 1666;
     &-left {
       .flex('s');
       &-img {

@@ -105,7 +105,11 @@
         let mode = this.$store.state.songPlayMode
         this.$store.commit('setSongPlayMode',mode<3?mode+1:1)
         this.playMode = this.$store.state.songPlayMode
-        console.log(this.playMode)
+        console.log(this.$toast())
+        this.$toast({
+          message:`已切换${this.playMode==1?'单曲循环':this.playMode==2?'随机播放':'顺序播放'}`,
+          duration:1500
+        });
       },
       //切换歌曲
       cutSong(type){

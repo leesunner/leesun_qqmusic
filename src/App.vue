@@ -46,13 +46,19 @@
     margin: auto auto;
     width: 0;
     height: 0;
-    z-index: 2999;
+    z-index: 1991;
     scaleX: 0;
     scaleY: 0;
     opacity: 0;
     overflow: hidden;
   }
-
+  .van-toast--text{
+      padding: 20px 24px;
+    background-color: rgba(7, 193, 96, 0.86);
+    .van-toast__text{
+      font-size: 28px;
+    }
+  }
   .fade-enter-active, .fade-leave-active {
     transition: all 0.25s;
   }

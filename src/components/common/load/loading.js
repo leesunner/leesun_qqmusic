@@ -5,7 +5,7 @@ const loading = {
     imgUrl:require('../image/icon/20130527034916434.gif'),
     backGround: 'rgb(0,0,0,0.6)',
   },
-  open: function () {
+  open() {
     const _this = this
     const ele = document.getElementById('leesun-loading')
     if (!ele) {
@@ -30,10 +30,10 @@ const loading = {
       load.style.zIndex = '2999';
     }
   },
-  close: function () {
+  close() {
     this.config._ele.style.display = 'none'
   },
-  create: function (obj) {
+  create(obj) {
     if(!obj) return
     //自定义的传入字段
     this.config.backGround = obj.backGround
