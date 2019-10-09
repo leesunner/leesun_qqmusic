@@ -13,6 +13,3 @@ const messages = {
   }
 };
 Locale.add(messages);
-
-import { Button } from 'vant';
-Vue.use(Button);

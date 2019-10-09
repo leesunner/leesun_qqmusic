@@ -6,9 +6,9 @@ import 'es6-promise/auto'
 import store from './store/index'
 import Vant from 'vant';
 import 'vant/lib/index.css';
-import './vantConfig/index'
+// import './vantLangConfig/index'
 import './diyComponents/index'
-import chart from '@antv/f2'
+// import chart from '@antv/f2'
 import axios from './request/index'
 import apiConfig from './request/apiConfig'
 import filters from './filters/index'
@@ -21,7 +21,7 @@ Vue.use(Vant);
 FastClick.attach(document.body);
 Vue.prototype.$axios = axios
 Vue.prototype.$api = apiConfig
-Vue.prototype.$F2 = chart
+// Vue.prototype.$F2 = chart
 Vue.prototype.$funs = funs
 
 new Vue({
