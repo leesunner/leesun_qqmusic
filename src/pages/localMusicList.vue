@@ -62,6 +62,7 @@
     &-content {
       position: relative;
       &-item {
+        padding-top: 12px;
         /deep/ .van-cell {
           font-size: 36px;
           display: block;
