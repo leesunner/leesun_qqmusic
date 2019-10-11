@@ -36,8 +36,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
-        compress: {
-          warnings: false
+        compress: { //压缩代码
+          dead_code: true,    //移除没被引用的代码
+          warnings: false,     //当删除没有用处的代码时，显示警告
+          loops: true //当循环语句的判断条件可以确定是，对其进行优化
         }
       },
       sourceMap: config.build.productionSourceMap,

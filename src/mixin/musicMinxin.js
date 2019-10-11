@@ -7,7 +7,12 @@ const MusicMixin = {
   computed: {
     //歌曲进度
     timeRate() {
-      return (this.$store.state.songCurrentTime / this.$store.state.songTotalTime) * 100
+      let num = (this.$store.state.songCurrentTime / this.$store.state.songTotalTime) * 100
+      if(num.toFixed(5)>0){
+        return Number(num.toFixed(5))
+      }else{
+        return 0
+      }
     },
   },
   methods: {

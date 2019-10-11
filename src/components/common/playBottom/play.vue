@@ -17,14 +17,14 @@
       </div>
       <icon :icon="songStatus?'icon-zanting':'icon-bofang'" :size="0.8" :fontColor="'#32c37d'">
         <div class="play-right-control" @click="goPlay">
-          <van-circle
-            v-model="playRate"
-            :rate="timeRate"
-            color="#32c37d"
-            :stroke-width="60"
-            :size="74"
-            text=""
-          />
+          <!--<van-circle-->
+            <!--v-model="playRate"-->
+            <!--:rate="timeRate"-->
+            <!--color="#32c37d"-->
+            <!--:stroke-width="60"-->
+            <!--:size="74"-->
+            <!--text=""-->
+          <!--/>-->
         </div>
       </icon>
       <icon :icon="'icon-liebiao'" :size="0.8" :fontColor="'#32c37d'"></icon>
@@ -76,7 +76,7 @@
             this.$nextTick(() => {
               //dom更新完成后获取节点对象，并施加监听
               this.initPalyEl()
-              //歌曲切换后直接开始播放台突兀了，做一个延迟的效果
+              //歌曲切换后直接开始播放太突兀了，做一个延迟的效果
               setTimeout(()=>{
                 this.audio.play()
               },250)
@@ -107,7 +107,7 @@
         this.addLisenters()
       },
       Etimeupdate(e) {
-        this.$store.commit('setSongCurrentTime',e.srcElement.currentTime)
+        this.$store.commit('setSongCurrentTime',e.target.currentTime)
         clearInterval(this.setInt)
         this.setInt = setInterval(() => {
           this.playRotate += 0.18
@@ -121,7 +121,7 @@
         }
       },
       Eloadedmetadata(e) {
-        this.$store.commit('setSongTotalTime', e.srcElement.duration)
+        this.$store.commit('setSongTotalTime', e.target.duration)
         //每切换一次个就是一次播放记录
         this.$store.commit('setSongPlayNum', 1)
       },

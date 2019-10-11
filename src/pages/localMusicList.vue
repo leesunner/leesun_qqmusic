@@ -12,7 +12,7 @@
       </van-tabs>
     </div>
     <div class="local-content">
-      <van-index-bar>
+      <!--<van-index-bar>-->
         <div v-for="item in songs" :class="['local-content-item',item.url==$store.state.songInfo.url?'local-content-itemColor':'']" @click="playChoose(item)">
           <van-cell :title="item.songName">
             <div>
@@ -22,7 +22,7 @@
             </div>
           </van-cell>
         </div>
-      </van-index-bar>
+      <!--</van-index-bar>-->
     </div>
   </div>
 </template>
